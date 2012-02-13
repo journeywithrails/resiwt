@@ -1,0 +1,9 @@
+= object_controls do
+  %li
+    Show retweets for:
+    = select_tag :retweets_selector, options_for_select((%w{ by_me to_me of_me }.collect{ |i| [i.humanize.downcase, i] } << ["-- select retweets to show --", ""]).reverse, params[:filter])
+  %li= link_to("Frequent Retweeters", retweets_app_user_account_statistics_network_path(@account) + "#frequent")
+  %li.last= link_to "Statistics", retweets_app_user_account_statistics_network_path(@account)
+  
+
+= render_list(:statuses, @retweets)

@@ -1,0 +1,53 @@
+= object_controls do
+  %li= link_to_twitter_person("#{@person.screen_name}'s Twitter page", @person.screen_name)
+  %li= link_to "Send Direct Message", '#', :class => 'dm', :rel => h(@person.screen_name), :title => "Direct Message #{h @person.screen_name}" unless @account.is_twitter_user?(@person)
+  %li.last= render :partial => "app/spam_reports/form", :locals => { :person => @person } unless @account.is_twitter_user?(@person)
+
+= content_area do
+  #profile_box
+    %table.fancy
+      %tr
+        %th{:colspan => 3} Profile
+      %tr
+        %td{:width => "100px", :class => "profile_image", :valign => "top"}
+          = image_tag @person.profile_image_url.gsub(/_normal\./, "_bigger."), :alt => "#{h @person.screen_name}'s profile picture.", :title => "#{h @person.screen_name}'s profile picture."
+          = render :partial => "app/friendships/form", :locals => { :person => @person } unless @account.is_twitter_user?(@person)
+        %td{:width => "400px", :valign => "top"}
+          %h3
+            = h(@person.name)
+            .small.grey
+              = h(@person.screen_name)
+              %br
+              = h(@person.location.upcase) unless @person.location.blank?
+          
+          - unless @person.description.blank?
+            %p.em= auto_link(h(@person.description))
+          - unless @person.url.blank?
+            %p= link_to h(@person.url), h(@person.url)
+          - unless current_user.accounts.any? {|a| a.screen_name ==  @account.screen_name }
+            %p
+              You are
+              = link_to((@account.is_following?(@person) ? "following" : "not following"), app_user_account_friends_path(@account))
+              = @person.screen_name
+              and 
+              = @person.screen_name
+              is
+              = link_to((@account.is_being_followed_by?(@person) ? "following" : "not following"), app_user_account_followers_path(@account))
+              you.
+        %td{:width => "200px", :valign => "top"}
+          .influence= format_influence(@tweasier_account)
+          .stat_small
+            %strong= @person.friends_count
+            \...following
+          .stat_small
+            %strong= @person.followers_count
+            \...followers
+          .stat_small
+            %strong= @person.statuses_count
+            \...status updates
+          .stat_small
+            %strong= @person.favourites_count
+            \...favourites
+          .stat_large
+            %strong= time_ago_in_words(@person.created_at).capitalize
+            \...since Twitter registration

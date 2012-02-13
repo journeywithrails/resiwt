@@ -1,0 +1,38 @@
+= content_area do
+  %h3= "Links (via #{link_to "Bit.ly", Configuration.bitly.home_url}) &rarr; #{@link.short_url}"
+
+  %p
+    %strong Bit.ly URL:
+    = link_to @link.short_url, @link.short_url
+    %br
+    %strong Normal URL:
+    = link_to @link.long_url, @link.long_url
+
+  %p.statistic
+    %strong= @link.cached_clickcount
+    Total click throughs
+
+  %p.statistic
+    %strong= @link.cached_user_clickcount
+    Unique user click throughs
+
+  %h4= "Referrers (#{@link.referrers.size})"
+
+  - if @link.referrers.present?
+    %table.fancy
+      %tr
+        %th Domain
+        %th.right Unique hits
+      - @link.referrers.each_pair do |domain, stats|
+        %tr
+          %td{:width => "80%", :valign => "top"}
+            = domain.blank? ? "Direct Referral" : link_to(domain, domain)
+            - stats.each_pair do |path, hits|
+              %br
+              - url = "http://#{domain}#{path.blank? ? "/" : path}"
+              = link_to(url, url, :class => "small grey") unless domain.blank?
+          %td.right.large{:valign => "top", :width => "20%"}= stats.values.sum
+
+  - else
+    %p No referrers found.
+  

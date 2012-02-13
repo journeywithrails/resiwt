@@ -1,0 +1,19 @@
+/* IE only master */
+
+div#status_form_wrapper textarea#text { overflow: hidden; }
+
+div#header,
+div#header div.inner,
+div#header div.inner div#nav { z-index: 999; }
+div#header div.inner div#nav ul li ul li { float: right; }
+
+div#sidebar,
+div#sidebar ul#account_nav,
+div#sidebar ul#account_nav li { z-index: 9999 !important; }
+
+div.flash_content { z-index: 0 !important; }
+
+#profile_box table tr td div.stat_small { width: 272px; background: transparent url(/images/app/profile_stat_large-bg.png) 0 0 no-repeat; }
+
+div#header div.inner div#nav ul li ul { background: #eee; }
+	div#sidebar ul#account_nav li ul { background: #eee; }

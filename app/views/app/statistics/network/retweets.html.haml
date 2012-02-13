@@ -1,0 +1,41 @@
+= content_area do
+  %h3 Retweets
+  
+  = account_notices(@account)
+  
+  %p.statistic
+    %strong
+      = @account.retweets_to_me.size
+    \...total retweets to me
+  
+  %p.statistic
+    %strong
+      = @account.retweets_of_me.size
+    \...total retweets of me
+  
+  %p.statistic
+    %strong
+      = @account.retweets_by_me.size
+    \...total retweets by me
+
+  = link_to "Export as CSV", retweets_app_user_account_statistics_network_path(@account, :format => :csv), :class => "awesome green medium", :style => "margin-top: 20px"
+
+  %h4 Retweets Ratio
+  = flash_chart @account.retweets_ratio_chart.data
+
+  %h4 Retweets vs Timeline Content
+  = flash_chart @account.retweets_timeline_ratio_chart.data
+  
+  %h4#frequent Frequency of retweets
+  %table.fancy
+    %tr
+      %th User
+      %th Count
+    - @grouped_retweets.each do |screen_name, collection|
+      %tr
+        %td
+          = link_to h(screen_name), app_user_account_person_path(@account, screen_name)
+          %br
+          .grey= collection.first.message
+        %td.center= collection.size
+  

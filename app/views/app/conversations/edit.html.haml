@@ -1,0 +1,8 @@
+= render :partial => "controls_existing"
+
+= content_area do
+  %h3 Edit conversation
+  
+  - form_for :conversation, @conversation, :url => app_user_account_conversation_path(@account, @conversation), :html => { :method => :put, :class => "chunky" } do |form|
+    = render :partial =>"form", :locals =>{ :form => form }
+    %p= form.submit "Edit conversation", :class => "awesome blue large"

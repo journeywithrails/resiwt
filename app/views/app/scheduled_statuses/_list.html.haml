@@ -1,0 +1,11 @@
+- if scheduled_statuses.empty?
+  .notices
+    No scheduled statuses yet.
+    = link_to "Add one now.", new_app_user_account_scheduled_status_path(@account)
+- else
+  %table.fancy
+    %tr
+      %th{:width => "77%"} Details
+      %th{:width => "10%"} Status
+      %th{:width => "13%"} &nbsp;
+    = render :partial => "app/scheduled_statuses/scheduled_status", :collection => scheduled_statuses

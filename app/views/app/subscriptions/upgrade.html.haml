@@ -1,0 +1,25 @@
+= content_area do
+  %h3 Upgrade My Subscription
+  
+  %p 
+    Hi, we really want to keep making Tweasier a super cool app for you. But to do that it we need to pay for lots of stuff. 
+    So why not upgrade your free account to a Tweasier Pro account and gain much wider access to all of our features including:
+  
+  %ul
+    %li Detailed Twitter statistics reports which can be exported
+    %li Unlimited Twitter searches
+    %li Unlimited conversations
+    %li Multiple Twitter account usage
+    %li Unrestricted sorting of friends and followers
+    %li Daily email digests
+    %li Email notifications as things happen
+    %li Unlimited scheduled tweets
+    %li Priority access
+    %li Full Bit.ly integration
+    %li No advertising!
+  
+  %br
+  
+  %p= link_to('Upgrade to Pro', spreedly_upgrade_url(@user), :class => 'awesome green medium' ) if @user
+
+= render :partial => "/app/users/sidebar"

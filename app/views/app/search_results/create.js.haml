@@ -1,0 +1,18 @@
+%h3= "Search results (#{@results.size + @results_accounts.size})"
+
+%h4= "People"
+- if @results_accounts.empty?
+  .notices No people found.
+- else
+  %p.grey.small= "#{pluralize(@results_accounts.size, "person", "people")} found."
+  = render_list(:people, @results_accounts)
+
+%br.clear
+
+%h4= "Statuses"
+%p.grey.small= "#{pluralize(@results.size, "status")} found."
+- if @results.empty?
+  .notices No statuses found.
+- else
+  %ul#statuses
+    = render :partial => "app/statuses/status", :collection => @results

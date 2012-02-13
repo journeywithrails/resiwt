@@ -1,0 +1,9 @@
+= refresh_poller(direct_messages, 'direct_messages')
+
+= content_area do
+  - if direct_messages.blank?
+    .notices No messages found.
+  - else
+    %ul#statuses
+      = render :partial => "app/direct_messages/direct_message", :collection => direct_messages
+      = render :partial => "app/shared/pagination", :locals => { :first => direct_messages.first, :last => direct_messages.last }

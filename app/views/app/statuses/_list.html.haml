@@ -1,0 +1,9 @@
+= refresh_poller(statuses, 'statuses')
+
+= content_area do
+  - if statuses.blank?
+    .notices No statuses found.
+  - else
+    %ul#statuses
+      = render :partial => "app/statuses/status", :collection => statuses
+      = render :partial => "app/shared/pagination", :locals => { :first => statuses.first, :last => statuses.last}

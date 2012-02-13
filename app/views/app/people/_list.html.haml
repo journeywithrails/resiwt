@@ -1,0 +1,8 @@
+- if people.blank?
+  .notices No people found.
+- else
+  %table.fancy
+    %tr
+      %th{:width => "90%", :colspan => 2} User
+      %th{:width => "10%"} Influence
+      = render :partial => "app/people/person", :collection => people

@@ -1,0 +1,11 @@
+%tr.search[search]{:class => cycle(:odd, :even)}
+  %td
+    = link_to h(search.title), app_user_account_search_path(@account, search)
+    %br
+    .grey
+      Added on
+      = search.created_at
+  %td.grey.center= search.conditions.size
+  %td
+    = edit_button "edit", edit_app_user_account_search_path(@account, search)
+    = delete_button 'delete', app_user_account_search_path(@account, search), :confirm => "Are you sure you want to delete this search?", :method => :delete

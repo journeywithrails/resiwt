@@ -1,0 +1,21 @@
+= render :partial => "controls_existing"
+
+= content_area do
+  %h3 Conversation
+    
+  
+  %br.clear
+  %br.clear
+  
+  .center
+    = link_to h(@conversation.user_a), app_user_account_person_path(@account, @conversation.user_a), :class => "conversation_user"
+    and
+    = link_to h(@conversation.user_b), app_user_account_person_path(@account, @conversation.user_b), :class => "conversation_user"
+    
+  %br.clear
+  %br.clear
+  %br.clear
+  
+  = render :partial => "statuses", :locals => { :statuses => @statuses, :conversation => @conversation }
+  
+  %p.small.grey &#42; Please note that only conversations from the past 7 days are currently shown.

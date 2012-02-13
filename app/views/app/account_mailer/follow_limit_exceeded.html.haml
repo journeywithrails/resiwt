@@ -1,0 +1,18 @@
+%h2= "Hi there #{@account.screen_name}"
+
+%p
+  This email has been sent because your account
+  = "(#{@account.screen_name})"
+  has exceeded the following limit imposed by Twitter. Don't panic, everything is OK!
+%p It's usually best if more people follow you than you follow or 1:1. To resolve this you could simply wait a few days to give time for the other users to follow you back.
+%p
+  For more information about this matter please contact us or view
+  = link_to "Twitters helpful guide", "http://help.twitter.com/forums/10711/entries/68916"
+  on following best practices.
+%p
+  For reference, you currently have
+  %strong= @twitter_account.friends_count
+  friends and are following
+  %strong= @twitter_account.followers_count
+  people.
+%p Happy twittering.

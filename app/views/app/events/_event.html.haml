@@ -1,0 +1,4 @@
+%li{:class => event.object_pretty_type}
+  .event_content
+    = event_explanation(event)
+    %span.timestamp= "#{time_ago_in_words(event.created_at)} ago"

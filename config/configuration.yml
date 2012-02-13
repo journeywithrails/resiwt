@@ -1,0 +1,70 @@
+# -----------------------------------------------------
+# Master Configuration File
+# -----------------------------------------------------
+
+app:
+  version: 0.0.1
+  twitter_handle: tweasier
+  twitter_url: http://twitter.com/tweasier
+
+email:
+  info: info@tweasier.com
+  support: support@tweasier.com
+
+twitter:
+  auth_token: Tw4Gah4iMV5Vqjqy4uzIw
+  auth_secret: ZWTIjo46gJxnMmvsKw0bJRm6wcWkbKyOvmykYHDSXh8
+  request_limit: 150
+  whitelisted_request_limit: 20000
+  settings_url: http://twitter.com/account/settings
+  character_limit: 140
+  search_content_lifespan: 7 # days
+
+blog:
+  url: http://tweasier.com/blog
+  feed_url: http://feeds.feedburner.com/tweasier
+  cache_period: 2 # hours
+
+staging:
+  username: tweasier
+  password: t3sting123
+
+production:
+  username: tweasier
+  password: t3stm3
+
+charts:
+  background_colour: efefef
+
+sorting:
+  inactivity_period: 30 # days
+
+options:
+  email_notifications:
+    paid:
+      - none
+      - daily
+      - weekly
+    free:
+      - none
+      - weekly
+
+bitly:
+  home_url: http://bit.ly
+  signup_url: http://bit.ly/account/register
+
+google_maps:
+  api_key: ABQIAAAA-eURyKhSLzwC3AewI3OdFhQLNg9bWT2-pdEz34bH9gru3A-k4xRYiXkAN38OSuEZBwbag76oQqkE8A
+  
+spreedly:
+  development:
+    site_url: https://spreedly.com/tweasierdevelopment/
+  danvelopment:
+    site_url: https://spreedly.com/tweasierdevelopment/
+  production:
+    site_url: https://spreedly.com/tweasierproduction/
+
+# Commenting the maintenance message back in will show it
+# in the master layout. Use this for announcements etc.
+# maintenance:
+#   message: We are currently updating the site to bring you better stability and performance. Sorry for any inconvenience this may cause.

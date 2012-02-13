@@ -1,0 +1,8 @@
+= render :partial => "controls_existing"
+
+= content_area do
+  %h3 Edit saved search
+
+  - form_for(:search, :url => app_user_account_search_path(@account, @search), :html => { :method => :put, :class => "chunky" }) do |form|
+    = render :partial => "form", :locals => { :form => form }
+    %p= form.submit "Edit search", :disable_with => "Saving...", :class => "awesome blue large"

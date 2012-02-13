@@ -1,0 +1,3 @@
+[submodule "vendor/gems/chronic"]
+	path = vendor/gems/chronic
+	url = git@github.com:danhawkins/chronic.git

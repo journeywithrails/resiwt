@@ -1,0 +1,11 @@
+# Resque configuration
+
+auth:
+  username: danhawkins
+  password: xs40du9
+
+test: localhost:6379
+development: localhost:6379
+cucumber: localhost:6379
+staging: localhost:6379
+production: localhost:9876

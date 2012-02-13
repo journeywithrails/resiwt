@@ -1,0 +1,51 @@
+$(function(){
+  new Highcharts.Chart({
+        chart: {
+           renderTo: 'followers_chart',
+           margin: [50, 200, 60, 170]
+        },
+        title: {
+           text: 'Followers to following ratio'
+        },
+        plotArea: {
+           shadow: null,
+           borderWidth: null,
+           backgroundColor: null
+        },
+        tooltip: {
+           formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+           }
+        },
+        plotOptions: {
+           pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                 enabled: false,
+                 formatter: function() {
+                    if (this.y > 5) return this.point.name;
+                 },
+                 color: 'white',
+                 style: {
+                    font: '13px Trebuchet MS, Verdana, sans-serif'
+                 }
+              }
+           }
+        },
+        legend: {
+           layout: 'vertical',
+           style: {
+              left: 'auto',
+              bottom: 'auto',
+              right: '50px',
+              top: '100px'
+           }
+        },
+         series: [{
+           type: 'pie',
+           name: 'Followers vs Following',
+           data: <%= @account.account_chart.highchart_data.map{|k,v| [k,v]}.to_json %>
+        }]
+     });
+});

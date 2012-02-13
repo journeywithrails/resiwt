@@ -1,0 +1,67 @@
+%h3{:style => "margin: 10px 18px"}= "Account overview for #{h(@account.name)} (#{h(@account.screen_name)})"
+
+= account_notices(@account)
+
+%table.statistics_box
+  %tr
+    %td.left{:valign => "top"}
+      .stat
+        %h4
+          = image_tag("app/events/friend.png")
+          = link_to "Friends", app_user_account_friends_path(@account.screen_name)
+        .stat_item= link_to @person.friends_count, app_user_account_friends_path(@account)
+    %td.middle{:valign => "top"}
+      .stat
+        %h4
+          = image_tag("app/events/follower.png")
+          = link_to "Followers", app_user_account_followers_path(@account.screen_name)
+        .stat_item= link_to @person.followers_count, app_user_account_followers_path(@account)
+    %td.right{:valign => "top"}
+      .stat
+        %h4
+          = image_tag("app/events/mutual_friends.png")
+          = link_to "Mutual Friends", app_user_account_friends_path(@account.screen_name)
+        .stat_item= link_to number_to_percentage(@account.mutual_friends.size.as_percentage_of(@account.friends.size), :precision => 2), app_user_account_friends_path(@account)
+    %tr
+      %td.left{:valign => "top"}
+        .stat
+          %h4
+            = image_tag("app/events/status.png")
+            = link_to "Mentions", app_user_account_mentions_path(@account.screen_name)
+          .stat_item= link_to @account.mentions.count, app_user_account_mentions_path(@account.screen_name)
+      %td.middle{:valign => "top"}
+        .stat
+          %h4
+            = image_tag("app/events/retweet.png")
+            = link_to "Retweets", app_user_account_retweets_path(@account.screen_name)
+          .stat_item= link_to @account.retweets.count, app_user_account_retweets_path(@account.screen_name)
+      %td.right{:valign => "top"}
+        .stat
+          %h4
+            = image_tag("app/events/direct_message.png")
+            = link_to "Direct Messages", app_user_account_direct_messages_path(@account.screen_name)
+          .stat_item= link_to @account.direct_messages.count, app_user_account_direct_messages_path(@account.screen_name)
+    %tr
+      %td.left{:valign => "top"}
+        .stat
+          %h4
+            = image_tag("app/events/conversations.png")
+            = link_to "Conversations", app_user_account_conversations_path(@account.screen_name)
+          .stat_item= link_to @account.conversations.count, app_user_account_conversations_path(@account.screen_name)
+      %td.middle{:valign => "top"}
+        .stat
+          %h4
+            = image_tag("app/events/retweet.png")
+            = link_to "Scheduled Statuses", app_user_account_scheduled_statuses_path(@account.screen_name)
+          .stat_item= link_to @account.scheduled_statuses.count, app_user_account_scheduled_statuses_path(@account.screen_name)
+      %td.right{:valign => "top"}
+        .stat
+          %h4
+            = image_tag("app/events/searches_followed.png")
+            = link_to "Searches", app_user_account_searches_path(@account.screen_name)
+          .stat_item= link_to @account.searches.count, app_user_account_searches_path(@account.screen_name)
+
+#tweet_statistics{:style => "margin: 16px"}
+  - form_for(:stats, :url => app_user_account_statuses_path(@account), :html => { :id => "statistics_form" }) do
+    = hidden_field_tag 'text', "I currently have #{pluralize(@person.followers_count, "follower")}, #{pluralize(@person.friends_count, "friend")} and #{pluralize(@person.statuses_count, "status update")} - via @#{Configuration.app.twitter_handle}."
+    = submit_tag 'Tweet these stats', :class => "awesome blue large"

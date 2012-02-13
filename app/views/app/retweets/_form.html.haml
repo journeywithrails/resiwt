@@ -1,0 +1,3 @@
+- form_tag app_user_account_retweets_path(@account), :class => "retweet_form", :id => "retweet_form_for-#{status.twitter_id}" do
+  = hidden_field_tag 'status_id', status.twitter_id
+  = link_to(content_tag(:span, "retweet"), app_user_account_retweets_path(@account), :class => "retweet", :rel => status.twitter_id, :title => "Retweet this tweet", :id => "retweet_link_for-#{status.twitter_id}")

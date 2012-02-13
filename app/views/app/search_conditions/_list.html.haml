@@ -1,0 +1,8 @@
+- if search_conditions.empty?
+  .notices You have no conditions at the moment for this search yet.
+- else
+  %table.fancy#search_conditions
+    %tr
+      %th Condition
+      %th &nbsp;
+    = render :partial => "app/search_conditions/search_condition", :collection => search_conditions

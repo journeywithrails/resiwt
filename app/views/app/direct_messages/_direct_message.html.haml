@@ -1,0 +1,11 @@
+%li.status{:id => "status_#{direct_message.twitter_id}"}
+  = render :partial => "app/accounts/profile_card", :locals => { :profile_account => direct_message.author, :account => @account }
+  
+  = link_to "#{h(direct_message.author.screen_name)} (#{format_influence(direct_message.author)})", app_user_account_person_path(@account, direct_message.author.screen_name), :class => "screen_name"
+  
+  %p.text= format_status(direct_message)
+  
+  .meta
+    = "#{link_to_geolocation(direct_message)} -" if direct_message.coordinates
+    = "#{time_ago_in_words(direct_message.tweeted_at)} ago"
+  %br.clear

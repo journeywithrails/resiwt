@@ -1,0 +1,82 @@
+--- !ruby/object:Gem::Specification 
+name: redis
+version: !ruby/object:Gem::Version 
+  prerelease: false
+  segments: 
+  - 2
+  - 0
+  - 3
+  version: 2.0.3
+platform: ruby
+authors: 
+- Ezra Zygmuntowicz
+- Taylor Weibley
+- Matthew Clark
+- Brian McKinney
+- Salvatore Sanfilippo
+- Luca Guidi
+- Michel Martens
+- Damian Janowski
+autorequire: redis
+bindir: bin
+cert_chain: []
+
+date: 2010-06-22 00:00:00 +01:00
+default_executable: 
+dependencies: []
+
+description: Ruby client library for Redis, the key value storage server
+email: ez@engineyard.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- LICENSE
+files: 
+- LICENSE
+- README.markdown
+- Rakefile
+- lib/redis/client.rb
+- lib/redis/compat.rb
+- lib/redis/distributed.rb
+- lib/redis/hash_ring.rb
+- lib/redis/pipeline.rb
+- lib/redis/subscribe.rb
+- lib/redis/url.rb
+- lib/redis.rb
+has_rdoc: true
+homepage: http://github.com/ezmobius/redis-rb
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 2924689630278852713
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 3
+summary: Ruby client library for Redis, the key value storage server
+test_files: []
+

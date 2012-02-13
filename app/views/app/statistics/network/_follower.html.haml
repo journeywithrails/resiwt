@@ -1,0 +1,4 @@
+%tr[follower]
+  %td
+    = link_to "#{h follower.name} - #{h follower.screen_name}", app_user_account_person_path(@account, follower.screen_name)
+    %small= "on #{follower.created_at.to_s(:short)}"

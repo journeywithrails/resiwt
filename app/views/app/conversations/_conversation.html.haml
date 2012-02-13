@@ -1,0 +1,4 @@
+%tr
+  %td.center{:width => "45%"}= link_to h(conversation.user_a), app_user_account_conversation_path(@account, conversation), :class => 'conversation_user'
+  %td.center{:width => "10%"} and
+  %td.center{:width => "45%"}= link_to h(conversation.user_b), app_user_account_conversation_path(@account, conversation), :class => 'conversation_user'

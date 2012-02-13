@@ -1,0 +1,44 @@
+= content_area do
+  %h3 Miscellaneous content overview
+  
+  = account_notices(@account)
+  
+  %p.statistic
+    %strong= @total_links_by_account
+    \...total links shared by me
+  
+  %p.statistic
+    %strong= @total_links_by_everyone
+    \...total links shared by everyone
+
+  %p.statistic
+    %strong= @total_tweets_with_mention
+    \...total tweets containing mentions
+  
+  %p.statistic
+    %strong= @total_tweets_with_question
+    \...total tweets containing questions
+
+  %h3 Top Link Sharers
+  - if @top_link_sharers.blank?
+    .notices No people found.
+  - else
+    %table.fancy
+      %tr
+        %th{:width => "70%", :colspan => 2} User
+        %th.right{:width => "30%"} Link count
+      - @top_link_sharers.each do |person, count|
+        %tr
+          %td{:width => "10%", :valign => "top"}
+            = render :partial => "app/accounts/profile_card", :locals => { :profile_account => person, :account => @account }
+          %td{:valign => "top", :width => "60%"}
+            = link_to "#{h person.name} (#{h person.screen_name})", app_user_account_person_path(@account.screen_name, person.screen_name)
+            %br
+            .grey
+              = @account.is_following?(person) ? "Following" : "Not Following"
+              |
+              = @account.is_being_followed_by?(person) ? "Being followed by" : "Not being followed by"
+            %br
+            %br
+            .grey= auto_link(h(person.description))
+          %td.right{:width => "30%"}= count.size

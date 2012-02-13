@@ -1,0 +1,8 @@
+= render :partial => "controls"
+
+= content_area do
+  %h3 Edit a scheduled status
+  
+  - form_for :scheduled_status, @status, :url => app_user_account_scheduled_status_path(@account, @status), :html => { :method => :put, :class => "chunky" } do |form|
+    = render :partial =>"form", :locals =>{ :form => form }
+    %p= form.submit "Edit scheduled status", :class => "awesome blue large"

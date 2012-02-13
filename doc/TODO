@@ -1,0 +1,10 @@
+Issues
+
+* When looking at flash graphs in safari, navigation to left appears underneath the flash object
+  it could be down to the settings for the flash object
+  
+* Detect postcode regex and auto add UK for ease of use
+
+* Do not automatically populate bitly account details as it stop user from saving preferences
+
+* Hide notification messages after given timeout

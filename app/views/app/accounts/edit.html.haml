@@ -1,0 +1,71 @@
+= content_area do
+  %h3 Edit my account
+  
+  - form_for(:account, :url => app_user_account_path(@account), :html => { :method => :put, :class => "chunky" }) do |form|
+    = form.error_messages :header_message => "Please check the following:", :message => nil
+    
+    %h4#notification_preferences.breaker
+      Notification preferences
+      = help_link "HowcanIgetnotifiedofactivityfromwithinTweasier10"
+    
+    %p
+      = form.label :email_notifications
+      = form.select :email_notifications, @account.user.email_notification_options
+      %br
+      %span.hint When would you like to hear the latest statistics on your account. We will send you a daily/weekly digest of information tailored to you. If you don't want any email notifications just choose "none".
+    %p
+      = form.label :event_notifications
+      = form.select :event_notifications, [["On", true], ["Off", false]]
+      %br
+      %span.hint Would you like to receive notifications by email when activity occurs on your Twitter account (such as a direct message or mention)?
+    
+    %h4#geolocation_preferences.breaker
+      Geotagging
+      = help_link "HowdoesGeoTaggingworkwithinmyaccount11"
+      
+    %p
+      = form.label :location_string, "Please enter your current location:"
+      %br
+      = form.text_field :location_string
+      %br
+      %span.hint E.g &quot;Briggate, Leeds, UK&quot; or &quot;23 Briggate, Leeds, LS1 2RU, UK&quot;
+    
+    - if @account.location_hash && @account.location_hash[:address]
+      %p
+        We currently have your account located in
+        %strong= @account.location_hash[:city]
+        and geotagging is
+        %strong= @account.geotagging_available? ? "on." : "off."
+        To remove geotagging simply clear the address in the above field and submit the form.
+    
+      = render_map @account.location_hash[:lat], @account.location_hash[:long]
+    
+    - else
+      .notices We don't currently have a location saved for your account.
+    
+    %h4#bitly_preferences.breaker
+      Bitly integration
+      = help_link "HowcanIuseBitlytoshortenandtrackURLsinTweasier12"
+    
+    %p
+      = form.label :bitly_username
+      %br
+      = form.text_field :bitly_token
+    
+    %p
+      = form.label :bitly_api_key
+      %br
+      = form.password_field :bitly_secret
+  
+    %p= form.submit "Save Preferences", :disable_with => "Saving...", :class => "awesome blue large"
+  
+  %h4#remove_account.breaker
+    Remove account
+    = help_link "HowdoIremoveanaccountfromTweasier13"
+    
+  %p
+    If you wish to remove this account from Tweasier you can do so by clicking the button below. Please note that this
+    %strong cannot be undone.
+    
+  - form_for(@account, :url => app_user_account_path(@account), :html => { :method => :delete, :onsubmit => "return confirm('Are you sure you want to remove this account from Tweasier? This cannot be undone!')" }) do |form|
+    = form.submit "Remove #{@account.screen_name}", :disable_with => "Removing...", :class => "awesome red large"

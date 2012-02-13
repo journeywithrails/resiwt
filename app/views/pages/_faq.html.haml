@@ -1,0 +1,157 @@
+= shared "callout_two"
+
+#faq
+  %h4.breaker Registration
+  
+  %h5 Why would i use Tweasier?
+  %div
+    %p Here are just some of the problems we have come across from Twitter users:
+    %ul.fancy
+      %li It takes far too long to find the right people to follow
+      %li It takes me too much time to build my follower number base up
+      %li I am following too many people but I don't know how to sort out the good from the bad
+      %li I get followed by lots of spam accounts but I still have to trawl through them to find the good people worth following
+      %li I would like to know how successful my tweets are but don't know how to track them easily
+      %li Most people aren't local to me so I don't think they are that relevant. I want local followers.
+    %p
+      Tweasier solves all of these problems and so much more. For more information on what Tweasier has to offer, please
+      = link_to "take a look at the features", features_path
+      page.
+  
+  %h5 How can I help make Tweasier even better?
+  %div
+    %p
+      We want our service to be perfect so if you have some feedback which you think will help please do share it with us. You can do this by using the feedback widget when signed in or by
+      = "#{mail_to Configuration.email.info, "sending us an email", :encode => :hex}."
+  
+  %h4.breaker Twitter client
+  
+  / Todo
+  
+  %h5 My followers count seems to be slightly less than that quoted around the site. Why is this?
+  %div
+    %p Sometimes when you make a request to follow a user the request will not be immediately approved. This could be because the user has protected their profile through the privacy settings available to every Twitter user. Another reason could be that latency between Tweasier and the Twitter API means that statistics are sometimes slightly out of sync.
+  
+  %h4.breaker Spam reporting
+  
+  %h5 How do i report spam from within Tweasier?
+  %div
+    %p
+      Reporting
+      =link_to "spam", "http://en.wikipedia.org/wiki/Spam_(electronic)"
+      from within Tweasier is simple. When you discover a user who you feel may be abusing Twitter you can report them on their user profile page. Simply click the "report spam" link and we'll pass that message onto Twitter.
+  
+  %h4.breaker Twitter
+  
+  / Todo
+  
+  %h5 Will using Tweasier get me in trouble with Twitter?
+  %div
+    %p
+      Not at all! At Tweasier we make sure we do everything above board. We work very hard to create a tool that works
+      %strong with
+      Twitter not against it. This includes reporting spam from within the Twitter client, effectively reducing the amount of requests we make to Twitter and providing
+      a client that helps grow networks and friendships in a
+      %strong positive
+      way.
+  
+  %h5 I keep seeing "rate limit exceeded" warnings, what does this mean?
+  %div
+    %p
+      If you are a
+      %strong very
+      heavy Twitter user you may see this from time to time. An average user is granted
+      = Configuration.twitter.request_limit
+      API requests per hour. This means that if you are using a twitter client (such as Tweasier) rather heavily you may exceed this limit. The limit includes most calls
+      made to Twitter including the latest timeline feed, mentions, direct messages and viewing a persons profile. At Tweasier we take measures to try and reduce the amount
+      of requests you make to Twitter in the format of caching. We remember what pages you have clicked on and only get the newest content when it is available. This does not
+      affect your privacy.
+  
+  %h4.breaker Activity Feed
+
+  %h5 What is the activity feed and how do I use it?
+  %div
+    %p The activity feed is a summary of recent events surrounding your account. It provides a chronologically ordered list of items of interest including mentions, retweets and direct messages. You can choose to be alerted when an event happens on Tweasier by email from within your account settings page.
+  
+  %h4.breaker Scheduled Statuses
+  
+  %h5 What are Scheduled Statuses and how do I use them?
+  %div
+    %p Tweasier allows you to schedule a status update for a later date. Simply provide the content of the tweet and when to send it and we'll do the rest. If you no longer wish to send a scheduled tweet just delete it from the list.
+  
+  %h4.breaker Conversations
+  
+  %h5 What are Conversations and how do I use them?
+  %div
+    %p
+      Tweasier allows you to watch conversations between two users on Twitter. Simply provide the names of the people you wish to see a conversation between (without the @ symbol) and we'll do the rest. Please note that for now conversations between people are limited to
+      = Configuration.twitter.search_content_lifespan
+      days.
+  
+  %h4.breaker Searches
+
+  %h5 What are Searches and how do I use them?
+  %div
+    %p Saved searches are a set of conditions to filter content on Twitter. Use conditions within a search to find the people most relevant to you by keywords, location or those containing links.
+  
+  %h4.breaker My Twitter Accounts on Tweasier
+  
+  %h5 How can I get notified of activity from within Tweasier?
+  %div
+    %p You can choose to enable notifications under each Twitter account you have registered with Tweasier. There are two types of notifications:
+    %ul.fancy
+      %li
+        %strong Email Notifications
+        \-
+        These are digests which will get sent to your email address (which you used when you registered with Tweasier) on a daily or weekly basis. If you don't wish to receive digest emails any more choose 'none'.
+      %li
+        %strong Event Notifications
+        \-
+        These are notifications when an event happens on Tweasier. An event is anything that shows up in your activity feed, such as a mention, retweet of you or direct message. If you don't wish to receive notification just select 'Off'.
+  
+  %h5 How does GeoTagging work within my account?
+  %div
+    %p
+      You can use Tweasier to take advantage of Twitter's
+      = link_to "GeoTagging abilities", "http://twitter.zendesk.com/forums/26810/entries/78525"
+      by providing your current location for when you tweet. To use this feature you must have geotagging enabled within your Twitter preferences. To check this visit your
+      = link_to "account settings", Configuration.twitter.settings_url
+      page and ensure the &quot;Enable geotagging&quot; is checked.
+  
+  %h5 How can I use Bitly to shorten and track URLs in Tweasier?
+  %div
+    %p
+      You can integrate a
+      = link_to "Bit.ly", Configuration.bitly.home_url
+      account with Tweasier by providing us with your username and API token. If you don't have a Bit.ly account don't worry it's easy and you can
+      = "#{link_to "sign up for free", Configuration.bitly.signup_url}."
+      Once you've signed up you find your API token by clicking on the account link at the top right hand corner of
+      = "#{link_to "this page", Configuration.bitly.home_url}."
+    %p Once you've provided your details you'll see a link shortening icon in the status update box. When you shorten URLs within Tweasier we keep track of each and every one, making it easy to see statistics on who clicks your links and where they come from. You'll find link statistics under the 'statistics' navigation item under each account page.
+    
+  %h5 How do I remove an account from Tweasier?
+  %div
+    %p You can remove an account from Tweasier by clicking the red remove button under the account settings section. Please be aware that we cannot recover any information or statistics stored on Tweasier once an account is removed.
+
+  %h5 How do add an account to Tweasier?
+  %div
+    %p
+      To add a new Twitter account to Tweasier you need to be logged into the Twitter site. Once you're logged in click
+      = "#{link_to "here", new_app_user_account_path}."
+      You can add as many accounts as your plan allows.
+    %p
+      To ensure Tweasier uses your account in the most responsible and ethical way as possible we need to request access from Twitter. This ensures that we
+      %strong never
+      store your password, only a unique token related to you (which is much safer).
+
+  %h4.breaker Billing
+
+  %h5 How is my account billed on the paid plans?
+  %div
+    %p Accounts are billed on a monthly basis, if you wish to leave Tweasier your account simply won't renew.
+
+  %h4.breaker Statistics
+
+  %h5 How is the Tweasier influence calculated?
+  %div
+    %p Tweasier calculates the influence of a user by the number of friends and followers they have compared to the frequency which they tweet and how many people those tweets are exposed to (including who retweets them).

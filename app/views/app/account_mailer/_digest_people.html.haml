@@ -1,0 +1,13 @@
+- unless people.empty?
+  %table{:style => "text-align: left; width: 600px; margin: 0px; border-collapse: collapse; border: 1px #ccc solid;"}
+    %tr
+      %th{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px; font-weight: bold;"} Account
+      %th{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px; font-weight: bold;"} Followers count
+      %th{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px; font-weight: bold;"} Friends count
+    - people.each do |relationship|
+      %tr{:style => "border-collapse: collapse; border: 1px #ccc solid;"}
+        %th{:style => "font-weight: bold; border-collapse: collapse; border: 1px #ccc solid; padding: 8px;"}= link_to(relationship.screen_name, app_user_account_person_url(account.screen_name, relationship.screen_name))
+        %td{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px;"}= pluralize(relationship.followers_count, "follower")
+        %td{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px;"}= pluralize(relationship.friends_count, "friend")
+- else
+  %p None found.

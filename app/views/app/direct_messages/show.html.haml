@@ -1,0 +1,9 @@
+= content_area do
+  %h3
+    Direct Message from
+    = @direct_message.author.screen_name
+  
+  %br
+  %br
+  %ul#statuses
+    = render :partial => "app/direct_messages/direct_message", :locals => { :direct_message => @direct_message }

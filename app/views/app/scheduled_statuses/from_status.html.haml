@@ -1,0 +1,5 @@
+%h3 Schedule a status
+
+- form_for :scheduled_status, @status, :url => app_user_account_scheduled_statuses_path(@account), :html => { :class => "chunky" } do |form|
+  = render :partial =>"form", :locals =>{ :form => form }
+  %p= form.submit "Schedule status", :class => "awesome blue large"

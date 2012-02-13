@@ -1,0 +1,9 @@
+= render :partial => "controls_new"
+
+= content_area do
+  %h3 Create a conversation
+  %p Simply provide the names of the people you wish to see a conversation between (without the @ symbol) and we'll do the rest.
+    
+  - form_for :conversation, @conversation, :url => app_user_account_conversations_path(@account), :html => { :class => "chunky" } do |form|
+    = render :partial =>"form", :locals =>{ :form => form }
+    %p= form.submit "Create conversation", :class => "awesome blue large"

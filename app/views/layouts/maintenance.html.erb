@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version='1.0' encoding='utf-8' ?>
+<html lang='en' xml:lang='en'>
+  <head>
+    <title>Tweasier - The Twitter application that makes life easier</title>
+    <meta content='Tweasier the Twitter application that makes life easier' name='description' />
+    <meta content='Twitter application, Twitter tool, Twitter statistics, Twitter management application, Twitter follower, twitter clients, Social media tool, Twitter search, twitter business, twitter plans, Twitter questions, Twitter users, Twitter friends' name='keywords' />
+    
+    <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon' />
+    <link href='/favicon.ico' rel='icon' type='image/x-icon' />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <link href='/favicon.ico' rel='shortcut icon' />
+    <link href="/stylesheets/external/reset-min.css?dev" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/external/fonts-min.css?dev" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/screen.css?dev" media="screen" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+      <link href="/stylesheets/screen-ie.css?dev" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <!--[if lte IE 6]>
+      <script src="/javascripts/jquery.ie6.js?dev" type="text/javascript"></script>
+    <![endif]-->
+    
+  </head>
+  <body class='main_maintenance'>
+    <div id='header'>
+      <div class='inner'>
+        <a href="/" id="logo"><span>Tweasier</span></a>
+        <div id='follow_us'>
+          <a href="http://twitter.com/tweasier">Follow us on Twitter</a>
+        </div>
+
+      </div>
+    </div>
+    <div id='spotlight'>
+
+    </div>
+    <div id='content'>      
+      <div class='inner'>
+        <h1>
+          We're currently down for <%= reason ? reason : "maintenance" %>
+          as of <%= Time.now.strftime("%H:%M %Z") %>.
+        </h1>
+        <p>
+          Sorry for the inconvenience. We'll be back 
+          <%= deadline ? "by #{deadline}" : "shortly" %>.
+          Please email us if you need to get in touch.
+        </p>
+      </div>
+    </div>
+    <div id='footer'>
+      <div class='inner'>
+        <div class='box'>
+          <h4>Features</h4>
+          <ul>
+            <li><a href="/features">Twitter client</a></li>
+            <li><a href="/features">Spam filter</a></li>
+            <li><a href="/features">Analytics tool</a></li>
+            <li><a href="/features">Find followers</a></li>
+            <li><a href="/features">And more...</a></li>
+          </ul>
+        </div>
+        <div class='box'>
+          <h4>Twitter</h4>
+          <ul>
+            <li><a href="http://twitter.com/tweasier">Follow us on Twitter</a></li>
+          </ul>
+        </div>
+        <div class='box'>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%69%6e%66%6f@%74%77%65%61%73%69%65%72.%63%6f%6d">Email us</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="http://tweasier.com/blog">Blog</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/cancellation">Cancellation &amp; Refunds</a></li>
+          </ul>
+        </div>
+        <br class='clear' />
+        <p>&copy; 2010, Tweasier</p>
+      </div>
+    </div>
+  </body>
+</html>

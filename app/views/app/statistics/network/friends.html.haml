@@ -1,0 +1,53 @@
+= content_area do
+  %h3 Friends
+
+  = account_notices(@account)
+  
+  %p Here are all the people you have followed recently. We limit the number of users shown to those found in the last 2 weeks. The saved search that yielded the follower can be seen by clicking the "related search" link next to each person (if one exists).
+  
+  %p.statistic
+    %strong= pluralize((@friends_count), "friend")
+    \...so far.
+  
+    %h4 Friend connections timeline
+    = flash_chart @account.friends_chart.data
+
+    %h4 Profile image overview
+    - @friends.each do |friend|
+      = link_to image_tag(friend.profile_image_url, :class => "small_profile_image"), app_user_account_person_path(@account, friend.screen_name)
+  
+  %h4 User detail
+  - if @friends.empty?
+    .notices You have not followed anyone within the last 2 weeks.
+  - else
+    %table#links.fancy
+      %tr
+        %th{:width => "60%"} Person &#42;
+        %th.center{:width => "20%"} Related search
+      = render :partial => "app/statistics/network/friend", :collection => @friends
+      
+    = link_to "Export as CSV", friends_app_user_account_statistics_network_path(@account, :format => :csv), :class => "awesome green medium", :style => "margin-top: 20px"
+
+    %p.grey.small &#42; Numbers given may have changed since this data was recorded.
+  
+  %h3= "Unfollowed people statistics for #{h(@account.screen_name)}"
+
+  %p.statistic
+    %strong= "#{@users_count} unfollowed"
+    \...so far.
+
+  - if @account.unfollowed.present?
+    %h4 Unfollowed people from Tweasier
+    = flash_chart @account.unfollowed_chart.data
+
+    %h4 User Breakdown (sample)
+    %table.fancy
+      %tr
+        %th User
+        %th Date unfollowed
+      - @users.each do |person|
+        %tr
+          %td= link_to h(person.screen_name), app_user_account_person_path(@account, person.screen_name)
+          %td= person.updated_at
+  - else
+    .notices It seems like you haven't unfollowed anyone through Tweasier yet. Please come back soon!

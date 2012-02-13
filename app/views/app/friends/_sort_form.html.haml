@@ -1,0 +1,10 @@
+= object_controls do
+  %li
+    - form_for(:sort, :url => sort_url, :html => { :id => "sort_users_form", :method => :GET }) do |form|
+      Sort:
+      = select_tag :type, options_for_sortable_people("select sort option")
+  %li
+    - form_for(:search, :url => search_url, :html => { :method => :GET }) do |form|
+      Search:
+      = text_field_tag :q
+  %li.last= link_to "Statistics", statistics_url

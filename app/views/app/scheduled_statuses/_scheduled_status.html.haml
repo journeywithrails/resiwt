@@ -1,0 +1,10 @@
+%tr
+  %td
+    = scheduled_status.publish_date.to_s(:precise)
+    %br
+    .grey= h(scheduled_status.text)
+  %td{:class => scheduled_status.published? ? "published" : "pending"}= scheduled_status.published? ? "Published" : "Pending"
+  %td
+    - unless scheduled_status.published?
+      = edit_button "edit", edit_app_user_account_scheduled_status_path(@account, scheduled_status)
+      = delete_button 'delete', app_user_account_scheduled_status_path(@account, scheduled_status), :confirm => "Are you sure you want to delete this scheduled status?", :method => :delete

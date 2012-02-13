@@ -1,0 +1,9 @@
+= content_area do
+  %h3 Add a new Twitter account
+
+  %p To add a new Twitter account to Tweasier you need to be logged into the Twitter site. Once you are logged in click the button below. You can add as many accounts as your plan allows.
+  
+  - form_for(@user.accounts.build, :url => app_user_accounts_path) do |form|
+    = form.submit "Sync my account", :class => "awesome blue large", :disable_with => "Redirecting to Twitter..."
+
+= render :partial => "app/users/sidebar"

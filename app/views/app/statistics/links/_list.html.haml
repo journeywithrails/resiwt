@@ -1,0 +1,12 @@
+- if links.empty?
+  .notices You have no links at the moment.
+- else
+  %table#links.fancy
+    %tr
+      %th{:width => "30%"} Short link
+      %th{:width => "30%"} Long link
+      %th.center_align{:width => "20%"} Unique clicks &#42;
+      %th.center_align{:width => "20%"} Total clicks &#42;
+    = render :partial => "link", :collection => links
+  
+  %p.grey.small &#42; Last known cached figure.

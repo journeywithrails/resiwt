@@ -1,0 +1,35 @@
+= content_area do
+  %h3= "Mentions statistics for #{h(@account.screen_name)}"
+  
+  = account_notices(@account)
+  
+  %p.statistic
+    %strong
+      = @account.mentions.size
+    \...total mentions of me
+  
+  %h4 Mentions Frequency
+  = flash_chart @account.user_mentions_frequency_chart.data
+
+  %h4 Hourly Mentions Frequency
+  = flash_chart @account.hourly_mentions_frequency_chart.data
+  
+  %h4 Daily Mentions Frequency
+  = flash_chart @account.daily_mentions_frequency_chart.data
+  
+  %h4 Weekly Mentions Frequency
+  = flash_chart @account.weekly_mentions_frequency_chart.data
+  
+  %h4 Monthly Mentions Frequency
+  = flash_chart @account.monthly_mentions_frequency_chart.data
+  
+  %h4 Recent Mentions Activity
+  %table.fancy
+    %tr
+      %th User
+      %th{:colspan => 2} Count and Tweets
+    - @grouped_users.each do |screen_name, tweets|
+      %tr
+        %td= link_to h(screen_name), app_user_account_person_path(@account, screen_name)
+        %td= tweets.size
+        %td= "Last mention at #{tweets.last.tweeted_at.to_s(:precise)}" if tweets.last

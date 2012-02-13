@@ -1,0 +1,9 @@
+- if conversations.empty?
+  .notices
+    No conversations yet.
+    = "#{link_to "Add one", new_app_user_account_conversation_path(@account)}."
+- else
+  %table.fancy
+    %tr
+      %th.center{:colspan => 3} Between
+    = render :partial => "app/conversations/conversation", :collection => conversations

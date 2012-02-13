@@ -1,0 +1,13 @@
+%link{:rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
+%link{:rel => "icon", :href => "/favicon.ico", :type => "image/x-icon"}
+%meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+%link{ :rel => "shortcut icon", :href => "/favicon.ico" }
+
+= stylesheet_link_tag "external/reset-min", "external/fonts-min", 'external/facybox', "screen"
+/[if IE]
+  = stylesheet_link_tag 'screen-ie'
+
+= javascript_include_tag "jquery", "jquery.form", "jquery.extensions", "jquery.facybox", "jquery.faq", "json_tools", "navigation", "swfobject", "highcharts","application"
+
+/[if lte IE 6]
+  = javascript_include_tag "jquery.ie6"

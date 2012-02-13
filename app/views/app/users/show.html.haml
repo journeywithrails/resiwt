@@ -1,0 +1,8 @@
+= content_area do
+  %h3
+    My Twitter accounts
+    = help_link "HowdoaddanaccounttoTweasier14"
+    
+  = render_list(:accounts, @user.accounts)
+
+= render :partial => "sidebar"

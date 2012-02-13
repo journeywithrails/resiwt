@@ -1,0 +1,16 @@
+%h3 Request invite to Tweasier Beta preview
+
+%br.clear
+
+#sign_up
+  - form_for :invitation, :url => app_invitations_path, :html => { :method => :post, :class => "extra_chunky" } do |form|
+    %p Just provide us with a few details and we'll let you know when we are accepting new beta users
+
+    = form.error_messages :header_message => "Please check the following items:", :message => false
+    
+    %p
+      = form.label :recipient_email, 'Your email:'
+      %br
+      = form.text_field :recipient_email
+    
+    %p= form.submit 'Request invite', :disable_with => 'Please wait...', :class => "awesome blue large"

@@ -1,0 +1,33 @@
+%h2= "Hi there #{@account.screen_name}"
+
+%p= "Here is your Tweasier daily digest for #{h(@twitter_account.name)} (#{h(@twitter_account.screen_name)}):"
+
+%br
+= render :partial => "digest_statistics", :locals => { :account => @twitter_account }
+
+%br
+%h3 Newest friends
+= render :partial => "digest_people", :locals => { :account => @account, :people => @recent_friends }
+
+%br
+%h3 Newest followers
+= render :partial => "digest_people", :locals => { :account => @account, :people => @recent_followers }
+
+%br
+%h3 Mentions today
+= render :partial => "digest_statuses", :locals => { :account => @account, :statuses => @account.mentions.today }
+
+%br
+%h3 Direct messages today
+= render :partial => "digest_statuses", :locals => { :account => @account, :statuses => @account.direct_messages.today }
+
+%br
+%h3 Retweets of your statuses today
+= render :partial => "digest_statuses", :locals => { :account => @account, :statuses => @account.retweets_of_me.today }
+
+%br
+%h3 Search stats
+= render :partial => "digest_searches", :locals => { :account => @account, :searches => @searches }
+
+%br
+= render :partial => "digest_footer", :locals => { :account => @account }

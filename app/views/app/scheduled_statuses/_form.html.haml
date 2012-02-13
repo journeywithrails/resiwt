@@ -1,0 +1,11 @@
+= form.error_messages
+
+%p
+  = form.label :publish_date
+  %br
+  = form.datetime_select :publish_date, { :minute_step => 5, :start_year => Time.now.year, :end_year => 1.year.from_now.year, :default => 1.day.from_now }
+
+%p
+  = form.label :text, "Status"
+  %br
+  = form.text_area :text, :class => "status_box"

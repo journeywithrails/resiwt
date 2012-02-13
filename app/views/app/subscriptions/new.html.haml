@@ -1,0 +1,78 @@
+= content_area do
+  %h3 Add payment details to Tweasier
+  
+  - form_for(:credit_card, :url => app_user_subscription_path) do |form|
+    %p Please fill out your payment details below:
+    
+    - if @invoice and @invoice.errors.present?
+      #errorExplanation
+        %h2 Please check the following errors:
+        %ul
+          - @invoice.errors.each do |error|
+            %li= error
+    
+    %table.padded
+      %tr
+        %td{:colspan => 2}
+          %h4 Card Details
+      %tr
+        %th{:width => "30%"} First Name
+        %td{:width => "70%"}
+          = form.text_field :first_name
+      %tr
+        %th{:width => "30%"} Last Name
+        %td{:width => "70%"}
+          = form.text_field :last_name
+      %tr
+        %th{:width => "30%"} Card Number
+        %td{:width => "70%"}
+          = form.text_field :number
+      %tr
+        %th{:width => "30%"} Card Type
+        %td{:width => "70%"}
+          = form.select :card_type, [["Visa", "visa"], ["Mastercard", "master"]]
+      %tr
+        %th{:width => "30%"} CVS
+        %td{:width => "70%"}
+          = form.text_field :verification_value, :style => "width:100px;"
+      %tr
+        %th{:width => "30%"} Expires on
+        %td{:width => "70%"}
+          Month:
+          = form.select :month, (1..12).map { |m| [m] }
+          Year
+          = form.select :year, (Time.now.year..Time.now.year + 5).map { |y| [y] }
+      %tr
+        %th{:width => "30%"} &nbsp;
+        %td{:width => "70%"} &nbsp;
+      %tr
+        %td{:colspan => 2}
+          %h4 Billing Details
+      %tr
+        %th{:width => "30%"} Address
+        %td{:width => "70%"}
+          = form.text_field :address1
+      %tr
+        %th{:width => "30%"} City
+        %td{:width => "70%"}
+          = form.text_field :city
+      %tr
+        %th{:width => "30%"} County
+        %td{:width => "70%"}
+          = form.text_field :state
+      %tr
+        %th{:width => "30%"} Country
+        %td{:width => "70%"}
+          = form.text_field :country
+      %tr
+        %th{:width => "30%"} Zip/Postcode
+        %td{:width => "70%"}
+          = form.text_field :zip
+      %tr
+        %th{:width => "30%"} Telephone
+        %td{:width => "70%"}
+          = form.text_field :phone_number
+
+    %p Once you are happy with the details you have provided, click the button below to proceed with your order.
+    
+    %p= form.submit "Proceed with payment", :disable_with => "Processing payment...", :class => "awesome blue large"

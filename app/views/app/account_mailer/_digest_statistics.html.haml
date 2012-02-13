@@ -1,0 +1,19 @@
+%p
+  %strong{:style => "font-size: 2em"}= account.friends_count
+  \...friends
+%p
+  %strong{:style => "font-size: 2em"}= account.followers_count
+  \...followers
+%p
+  %strong{:style => "font-size: 2em"}= account.statuses_count
+  \...status updates
+%p
+  %strong{:style => "font-size: 2em"}= account.favourites_count
+  \...favourites
+- unless account.location.blank?
+  %p.statistic
+    %strong{:style => "font-size: 2em"}= h account.location
+    \...from
+%p
+  %strong{:style => "font-size: 2em"}= time_ago_in_words(account.created_at).capitalize
+  \...since registration

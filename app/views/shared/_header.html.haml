@@ -1,0 +1,44 @@
+#header
+  .inner
+    = link_to content_tag(:span, "Tweasier"), (signed_in? ? app_home_path : home_path), :id => "logo"
+    
+    #follow_us
+      = link_to "Follow us on Twitter", Configuration.app.twitter_url
+    
+    #nav
+      %ul
+        - if within_application?
+          %li= link_to "Sign out", sign_out_path
+          %li
+            - if @user and @user.accounts.present? and @account and !@account.new_record?
+              = link_to @account.screen_name , app_user_account_path(@account)
+              - if @user.feature_level == 'paid'
+                %ul
+                  - @user.accounts.each do |account|
+                    - unless account.new_record? || account == @account
+                      %li= link_to account.screen_name, app_user_account_path(account) 
+                  %li= link_to("Add another...", new_app_user_account_path) if can?(:create, App::Account)
+            - else
+              - if @user and @user.accounts.present? and @user.feature_level == 'free' and !@user.accounts.first.new_record?              
+                = link_to @user.accounts.first.screen_name, app_user_account_path(@user.accounts.first)
+              - else
+                = link_to "Select an account", app_home_path
+                %ul
+                  - @user.accounts.each do |account|
+                    %li= link_to account.screen_name, app_user_account_path(account) unless account.new_record?
+                  %li= link_to("Add another...", new_app_user_account_path) if can?(:create, App::Account)
+
+          %li.last= link_to current_user.email, edit_app_user_path
+        - else
+          - if signed_in?
+            %li= link_to "Sign out", sign_out_path
+            %li= link_to "My Account", app_user_path
+          - else
+            %li= link_to "Request Invite", sign_up_path, :class => selected_if?(nil, :users)
+            %li= link_to "Sign in", sign_in_path, :class => selected_if?(nil, :sessions)
+          %li= link_to "Blog", blog_path
+          %li= link_to "About", about_path, :class => selected_if?(:about)
+          %li= link_to "FAQ", faq_path, :class => selected_if?(:faq)
+          %li= link_to "Plans", plans_path, :class => selected_if?(:plans)
+          %li= link_to "Features", features_path, :class => selected_if?(:features)
+          %li.last= link_to "Home", home_path, :class => selected_if?(:home)

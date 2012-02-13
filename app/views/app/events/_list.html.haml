@@ -1,0 +1,6 @@
+- if events.blank?
+  .notices No recent activity.
+- else
+  %ul#events
+    = render :partial => "app/events/event", :collection => events
+  %br.clear

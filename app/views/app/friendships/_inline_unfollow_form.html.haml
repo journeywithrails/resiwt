@@ -1,0 +1,3 @@
+- form_tag app_user_account_friendship_path(@account, :id => h(person.screen_name)), :class => "inline_unfollow_form unfollow_form_for-#{person.id}", :method => :delete, :style => ("display:none" unless following)  do
+  = hidden_field_tag 'user', h(person.screen_name)
+  = link_to(content_tag(:span, "unfollow"), app_user_account_friendship_path(@account, :id => h(person.screen_name)), :class => "inline_unfollow unfollow", :rel => person.id, :title => "Unfollow #{person.screen_name}")

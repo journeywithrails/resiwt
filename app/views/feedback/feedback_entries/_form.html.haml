@@ -1,0 +1,6 @@
+#feedback_form
+  - form_for :feedback_entry, :url => feedback_feedback_entries_path, :html => { :id => "feedback_entry_form" } do |form|
+    %p
+      Please help us make Tweasier even better by telling us what we could improve or what features we're missing:
+    = form.text_area :content
+    = submit_tag "Submit Feedback", :class => "awesome green medium", :style => "margin-top: 8px"

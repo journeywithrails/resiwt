@@ -1,0 +1,24 @@
+#sidebar
+  - if @account
+    #account_title
+      #profile_image= link_to image_tag(@account.profile_image_url, :alt => "#{h @account.screen_name}'s profile picture."), app_user_account_path(@account)
+      %br.clear
+      %strong= link_to h(@account.screen_name), app_user_account_path(@account)
+    %ul#account_options
+      %li= link_to "View Profile",app_user_account_person_path(@account, @account.screen_name)
+      %li= link_to "Settings", edit_app_user_account_path(@account)
+    .rule
+    = render :partial => "app/accounts/nav", :locals => { :account => @account }
+  
+  - sidebar_content = yield :sidebar
+  - if sidebar_content
+    = content_tag(:div, "", :class => "rule") if @account
+    .sidebar_content
+      = yield :sidebar
+  
+  .rule
+  .sidebar_content  
+    = render :partial => "feedback/poll_entries/form", :locals => { :poll => @poll } if @poll
+    = render :partial => "feedback/feedback_entries/form", :locals => { :feedback_entry => @feedback_entry } if @feedback_entry
+  
+  = render :partial => "app/shared/ads" if can?(:view, :advertising)

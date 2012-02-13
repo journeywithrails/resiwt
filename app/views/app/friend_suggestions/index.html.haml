@@ -1,0 +1,10 @@
+= object_controls do
+  %li.last= link_to "Back to friends", app_user_account_friends_path(@account)
+
+= content_area do
+  %h3
+    Friend Suggestions for
+    = params[:friend_id]
+    .grey.small= "People who you may be interested in who #{params[:friend_id]} is friends with."
+  
+  = render_list(:people, @suggestions)

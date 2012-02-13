@@ -1,0 +1,35 @@
+= content_area do
+  %h3= "Timeline statistics for #{h(@account.screen_name)}"
+
+  = account_notices(@account)
+  
+  %p.statistic
+    %strong= @total_statuses
+    \...total tweets published so far
+  
+  %h4 Frequency
+  = flash_chart @account.user_status_frequency_chart.data
+  
+  %h4 Hourly Tweet Frequency
+  = flash_chart @account.hourly_status_frequency_chart.data
+  
+  %h4 Daily Tweet Frequency
+  = flash_chart @account.daily_status_frequency_chart.data
+  
+  %h4 Weekly Tweet Frequency
+  = flash_chart @account.weekly_status_frequency_chart.data
+  
+  %h4 Monthly Tweet Frequency
+  = flash_chart @account.monthly_status_frequency_chart.data
+  
+  %h4 Recent Timeline Activity
+  %table.fancy
+    %tr
+      %th User
+      %th{:colspan => 2} Count and Tweets
+    - @grouped_statuses.each do |screen_name, tweets|
+      %tr
+        %td= link_to h(screen_name), app_user_account_person_path(@account, screen_name)
+        %td= tweets.size
+        %td= "Last tweet at #{tweets.last.tweeted_at.to_s(:precise)}" if tweets.last
+  

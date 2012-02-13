@@ -1,0 +1,6 @@
+# Add any GIT externals here, don't forget to add the external to .gitignore so it doesn't get
+# commited with the main project (although this should be added automagically).
+
+rspreedly-0.1.12:
+  repo: git://github.com/joshnesbitt/rspreedly.git
+  path: vendor/gems

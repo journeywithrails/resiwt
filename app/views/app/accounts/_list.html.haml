@@ -1,0 +1,10 @@
+- if accounts.empty?
+  .notices= link_to "Click here to add your first account!", new_app_user_account_path
+- else
+  %table#accounts.fancy
+    %tr
+      %th{:colspan => 2} Account
+      %th.center Settings
+      %th.center Tools
+    = render :partial => "app/accounts/account", :collection => @user.accounts
+  %br.clear

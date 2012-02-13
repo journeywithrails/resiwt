@@ -1,0 +1,7 @@
+.account_profile_card
+  = link_to image_tag(profile_account.profile_image_url), app_user_account_person_path(account, profile_account.screen_name)
+  
+  = render :partial => "app/friendships/inline_unfollow_form", :locals => { :person => profile_account, :following => @account.is_following?(profile_account) }
+  = render :partial => "app/friendships/inline_follow_form", :locals => { :person => profile_account, :following => @account.is_following?(profile_account) }
+  
+  = link_to content_tag(:span, "direct message"), '#', :class => 'dm', :rel => h(profile_account.screen_name), :title => "Direct Message #{h(profile_account.screen_name)}"

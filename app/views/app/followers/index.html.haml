@@ -1,0 +1,10 @@
+= render :partial => "app/friends/sort_form", :locals => { :sort_url => sort_app_user_account_followers_path(@account), :search_url => search_app_user_account_followers_path(@account), :statistics_url => followers_app_user_account_statistics_network_path(@account) }
+
+= content_area do
+  %h3
+    My Followers
+    .grey.small
+      Sorted by
+      = "#{label_for_sorted_people(params[:type])}."
+  
+  = render_list(:friends, @followers)

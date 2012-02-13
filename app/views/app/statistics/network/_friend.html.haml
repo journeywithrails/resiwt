@@ -1,0 +1,9 @@
+%tr[friend]
+  %td
+    = link_to "#{h friend.name} - #{h friend.screen_name}", app_user_account_person_path(@account, friend.screen_name)
+    %small.grey
+      since
+      = friend.created_at
+    %br
+    = "#{pluralize friend.friends_count, 'friend', 'friends'}, #{pluralize friend.followers_count, 'follower', 'followers'}, #{pluralize friend.statuses_count, 'tweet', 'tweets'}"
+  %td.center= friend.search ? link_to(friend.search.title, app_user_account_search_path(@account, friend.search)) : "none"

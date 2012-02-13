@@ -1,0 +1,4 @@
+= object_controls do
+  %li.last= link_to "Statistics", mentions_app_user_account_statistics_overview_path(@account)
+
+= render_list(:statuses, @mentions)

@@ -1,0 +1,7 @@
+- unless statuses.empty?
+  - statuses.each do |status|
+    .status{:style => "padding: 10px; border-left: 4px #ccc solid; margin: 0 0 10px 0;"}
+      = link_to("#{status.author.screen_name}:", app_user_account_person_url(account, status.author.screen_name))
+      = status.message
+- else
+  %p None found.

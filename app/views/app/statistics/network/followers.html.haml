@@ -1,0 +1,30 @@
+= content_area do
+  %h3 Followers
+  
+  = account_notices(@account)
+  
+  %p Here are all the people who are following you. We limit the number of users shown to those found in the last 2 weeks.
+  
+  %p.statistic
+    %strong= pluralize((@followers_count), "follower")
+    \...so far.
+  
+    %h4 Followers connections timeline
+    = flash_chart @account.followers_chart.data
+
+    %h4 Profile image overview
+    - @followers.each do |follower|
+      = link_to image_tag(follower.profile_image_url, :class => "small_profile_image"), app_user_account_person_path(@account, follower.screen_name)
+  
+  %h4 User detail
+  - if @followers.empty?
+    .notices You have no followers.
+  - else
+    %table#links.fancy
+      %tr
+        %th Person and date started following &#42;
+      = render :partial => "follower", :collection => @followers
+
+    = link_to "Export as CSV", followers_app_user_account_statistics_network_path(@account, :format => :csv), :class => "awesome green medium", :style => "margin-top: 20px"
+
+    %p.grey.small &#42; Numbers given are approximate and taken from when the data was recorded.

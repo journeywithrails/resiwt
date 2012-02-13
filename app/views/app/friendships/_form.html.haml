@@ -1,0 +1,7 @@
+- if person.following
+  - form_tag app_user_account_friendship_path(@account, :id => h(person.screen_name)), :method => :delete do
+    = submit_tag 'Stop Following', :disable_with => 'Please Wait...'
+- else
+  - form_tag app_user_account_friendships_path(@account) do
+    = hidden_field_tag 'user', h(person.screen_name)
+    = submit_tag 'Follow', :disable_with => 'Please Wait...'

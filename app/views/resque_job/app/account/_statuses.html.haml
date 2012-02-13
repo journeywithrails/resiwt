@@ -1,0 +1,3 @@
+%ul#statuses
+	= render :partial => "app/statuses/status", :collection => association
+	= render :partial => "app/shared/pagination", :locals => { :first => association.first, :last => association.last }

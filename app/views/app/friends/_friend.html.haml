@@ -1,0 +1,22 @@
+%tr
+  %td{:width => "48px", :valign => "top"}
+    = render :partial => "app/accounts/profile_card", :locals => { :profile_account => friend, :account => @account }
+  %td{:valign => "top"}
+    = link_to [h(friend.name), content_tag(:span, h(friend.screen_name), :class => "grey")].join(" "), app_user_account_person_path(@account.screen_name, friend.screen_name)
+    %br
+    %br
+    .grey
+      = @account.is_following?(friend) ? "Following" : "Not Following"
+      |
+      = @account.is_being_followed_by?(friend) ? "Being followed by" : "Not being followed by"
+      %br
+      %br
+      Suggestions:
+      = link_to("Friends", app_user_account_friend_suggestions_path(@account, friend.screen_name), :class => "loading_message", :rel => "Generating suggestions for #{friend.screen_name}")
+      |
+      = link_to("Followers", app_user_account_follower_suggestions_path(@account, friend.screen_name), :class => "loading_message", :rel => "Generating suggestions for #{friend.screen_name}")
+  
+  %td.center= format_influence(friend)
+  %td.center= link_to number_with_delimiter(friend.statuses_count), app_user_account_person_path(@account, friend.screen_name)
+  %td.center= link_to_twitter_followers(number_with_delimiter(friend.followers_count), friend.screen_name)
+  %td.center= link_to_twitter_friends(number_with_delimiter(friend.friends_count), friend.screen_name)

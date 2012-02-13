@@ -1,0 +1,11 @@
+- unless searches.empty?
+  %table{:style => "text-align: left; width: 400px; margin: 0px; border-collapse: collapse; border: 1px #ccc solid;"}
+    %tr
+      %th{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px; font-weight: bold;"} Term
+      %th{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px; font-weight: bold;"} Count
+    - searches.each do |search|
+      %tr{:style => "border-collapse: collapse; border: 1px #ccc solid;"}
+        %th{:style => "font-weight: bold; border-collapse: collapse; border: 1px #ccc solid; padding: 8px;"}= search ? link_to(search.title, app_user_account_search_url(account, search)): "No search defined (manual)"
+        %td{:style => "border-collapse: collapse; border: 1px #ccc solid; padding: 8px;"}= pluralize(search.friends.count, "person", "people")
+- else
+  %p None found.

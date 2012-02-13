@@ -1,0 +1,11 @@
+= render :partial => "controls"
+
+= content_area do
+  %h3
+    Scheduled Statuses
+    = help_link "WhatareScheduledStatusesandhowdoIusethem7"
+  %p
+    Tweasier allows you to schedule a status update for a later date. Simply provide the content of the tweet and when to send it 
+    and we'll do the rest. If you no longer wish to send a scheduled tweet just delete it from the list.
+      
+  =render_list(:scheduled_statuses, @statuses)

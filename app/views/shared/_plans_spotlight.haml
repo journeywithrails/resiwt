@@ -1,0 +1,10 @@
+#plans_spotlight
+  - subscription_plans.each do |plan|
+    .plan{:class => "#{"last" if plan.id == subscription_plans.last.id}"}
+      = image_tag("front_end/plans/pro.png", :alt => "Pro Licence") unless plan.plan_type == "free_trial"
+      %h4= plan.name
+      %h5= "&pound;#{"%.2f" % plan.price} per month"
+      %p= plan.description
+      =link_to content_tag(:span, "Buy now!"), sign_up_path(:plan => plan.id)
+  
+  %br.clear

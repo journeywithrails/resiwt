@@ -1,0 +1,37 @@
+= render :partial => "controls_existing"
+
+= content_area do
+  %h3= "Search for '#{h @search.title}'"
+  
+  %p
+    Tweasier finds users and tweets you might be interested in by searching through tweets with the conditions you provide. So far this search has secured you
+    = link_to pluralize(@search.friends.count, "friend"), friends_app_user_account_statistics_network_path(@account)
+    (you can see more information about the results of this search in the
+    = link_to "statistics", searches_app_user_account_statistics_content_path(@account)
+    section).
+  
+  = render_list(:search_conditions, @search.conditions)
+  = render :partial => "app/search_conditions/new", :locals => { :account => @account, :search => @search }
+  
+  - form_for(:search, :url => app_user_account_search_results_path(@account, @search), :html => { :id => "perform_search" }) do |form|
+    = form.hidden_field :title, :value => @search.title, :id => "search_title"
+    = form.submit "Perform this search", :class => "awesome blue large"
+  
+  %br.clear
+  %br.clear
+  
+  #search_results
+  
+  - if @recent_results.present?
+    %h3 Previous Results
+    %p.grey.small Recent results yielded from this search.
+    %table.fancy
+      - @recent_results.each do |status|
+        %tr
+          %td{:width => "48px", :valign => "top"}
+            = render :partial => "app/accounts/profile_card", :locals => { :profile_account => status.author, :account => @account }
+          %td{:valign => "top"}
+            = link_to "#{h status.author.name} (#{h status.author.screen_name})", app_user_account_person_path(@account.screen_name, status.author.screen_name)
+            %br
+            %br
+            .grey= format_status(status)

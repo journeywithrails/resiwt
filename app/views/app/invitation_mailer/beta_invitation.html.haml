@@ -1,0 +1,7 @@
+%h2= "Hi there"
+
+%p= "You have been invited to an exclusive beta preview of Tweasier by #{@invitation.sender_email}"
+
+%p= "To accept the invite and see what all the excitement is about follow the link below!"
+
+%p= link_to('Accept Beta Invitation', beta_sign_up_url(@invitation.token)) << " and when you reach the main screen make sure you select the free plan."

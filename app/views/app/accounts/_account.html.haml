@@ -1,0 +1,41 @@
+%tr
+  %td{:valign => "top", :width => "50px"}
+    = link_to image_tag(account.profile_image_url, :alt => "#{h account.screen_name}'s profile picture.", :title => "#{h account.screen_name}'s profile picture."), app_user_account_path(account)
+  %td{:valign => "top", :width => "200px"}
+    = link_to account.name, app_user_account_events_path(account.screen_name), :class => "account_link"
+    %br
+    = link_to account.screen_name, app_user_account_events_path(account.screen_name), :class => "screen_name grey"
+    
+    %table
+      %tr
+        %th Friends
+        %th Followers
+        %th Updates
+      %tr
+        %td
+          .counter= link_to account.friends.count, app_user_account_friends_path(account)
+        %td
+          .counter= link_to account.followers.count, app_user_account_followers_path(account)
+        %td
+          .counter= link_to account.own_statuses.count, app_user_account_path(account)
+  %td.grey{:valign => "top", :width => "120px"}
+    %strong Email Notifications:
+    %br
+    - account.user.email_notification_options.each do |type|
+      = link_to(type.capitalize, edit_app_user_account_path(account), :class => "#{'grey' unless (account.email_notifications == type)}")
+      = "/" unless account.user.email_notification_options.last == type
+    %br
+    %br
+    %strong Alerts:
+    %br
+    = link_to("On", edit_app_user_account_path(account), :class => "#{'grey' unless account.event_notifications}")
+    \/
+    = link_to("Off", edit_app_user_account_path(account), :class => "#{'grey' if account.event_notifications}")
+  
+  %td#account_actions{:width => "78px"}
+    = link_to content_tag(:span, "timeline"), app_user_account_path(account.screen_name), :class => "timeline", :title => "Timeline"
+    = link_to content_tag(:span, "searches"), app_user_account_searches_path(account.screen_name), :class => "searches", :title => "Searches"
+    = link_to content_tag(:span, "friends"), app_user_account_friends_path(account.screen_name), :class => "friends", :title => "Friends"
+    = link_to content_tag(:span, "followers"), app_user_account_followers_path(account.screen_name), :class => "followers", :title => "Followers"
+    = link_to content_tag(:span, "scheduled statuses"), app_user_account_scheduled_statuses_path(account.screen_name), :class => "scheduled", :title => "Scheduled Statuses"
+    = link_to content_tag(:span, "statistics"), app_user_account_statistics_overview_path(account.screen_name), :class => "statistics", :title => "Statistics"

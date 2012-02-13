@@ -1,0 +1,35 @@
+%script{:type => "text/javascript", :charset => "utf-8"}
+  //<![CDATA[
+  function checkAll(cb)
+  {
+  //alert("hi");
+  var val = cb.checked;
+  var frm = document.appl_form;
+  var len = frm.elements.length;
+  var i=0;
+  for( i=0 ; i<len ; i++) 
+  {
+ 
+  frm.elements[i].checked=val;
+
+  }
+  return false;	
+  }
+  //]]>
+- if followed_people.empty?
+  %p
+    You have no followed people within the last 2 weeks.
+- else
+- form_tag app_user_account_statistics_followed_person_path(@account,@account), :method => :delete,:name => "appl_form" do
+  %table#links.fancy
+    %tr
+      %th{:width => "60%"} Person
+      %th{:width => "20%"} Related search
+      %th{:width => "10%"}
+        ="all"
+        %input{:name => "selectall", :onclick => "javascript:checkAll(this);", :type => "checkbox"}/
+      
+            	  
+    = render :partial => "followed_person", :collection => followed_people
+  = submit_tag 'UnFollow'
+  %p Numbers given may have changed since this data was recorded.

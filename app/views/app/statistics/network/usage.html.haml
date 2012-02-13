@@ -1,0 +1,22 @@
+= content_area do
+  %h3 Usage overview
+  
+  = account_notices(@account)
+    
+  = javascript_include_tag usage_app_user_account_statistics_network_path(@account, :format => :js)
+  
+  #source_chart.standard_chart.bar_chart
+  
+  = link_to "Export as CSV", usage_app_user_account_statistics_network_path(@account, :format => :csv), :class => "awesome green medium", :style => "margin-top: 20px"
+  
+  %h4 Recent User Activity (sample)
+  %table.fancy
+    %tr
+      %th User
+      %th{:colspan => 2} Tweets
+    - @grouped_users.each do |screen_name, tweets|
+      %tr
+        %td= link_to h(screen_name), app_user_account_person_path(@account, screen_name)
+        %td= tweets.size
+        %td= "Last tweet at #{tweets.last.tweeted_at.to_s(:precise)}" if tweets.last
+  

@@ -1,0 +1,26 @@
+= content_area do
+  %h3 Network overview
+  
+  = account_notices(@account)
+  
+  = javascript_include_tag app_user_account_statistics_network_path(@account, :format => :js)
+  
+  #followers_chart.standard_chart.bar_chart
+  
+  %h4 Most influential friends in your network
+  = render_list(:people, @influential_friends)
+  
+  %h4 Most influential followers in your network
+  = render_list(:people, @influential_followers)
+  
+  %h4 Most popular friends by number of followers
+  = render_list(:people, @popular_friends_by_followers)
+  
+  %h4 Most popular friends by number of friends
+  = render_list(:people, @popular_friends_by_friends)
+
+  %h4 Most popular followers by number of followers
+  = render_list(:people, @popular_followers_by_followers)
+  
+  %h4 Most popular followers by number of friends
+  = render_list(:people, @popular_followers_by_friends)

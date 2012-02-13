@@ -1,0 +1,30 @@
+= content_area do
+  %h3 My Subscription
+  
+  %br
+  
+  %table.padded
+    %tr
+      %th Status
+      %td= @subscription.active ? "Active" : "Inactive"
+    %tr
+      %th Plan
+      %td
+        = @subscription.feature_level.humanize
+        = link_to('upgrade to paid account', spreedly_upgrade_url(@user)) if @subscription.feature_level == 'free'
+    %tr
+      %th Expires
+      %td
+        = @subscription.active_until || "Never"
+        - if @subscription.recurring
+          (will auto renew).
+  
+  %p
+    If you want to cancel your subscription at any time simple click the button below. Please be aware this
+    %strong CANNOT
+    be undone and your account will be removed from our systems.
+  
+  - form_for(@user, :url => app_user_path, :html => { :method => :delete, :onsubmit => "return confirm('Are you sure you want to unsubscribe and delete your account?! You cannot undo this!')" }) do |form|
+    = form.submit "Unsubscribe from Tweasier", :disable_with => "Leaving Tweasier...", :class => "awesome red large"
+    
+= render :partial => "/app/users/sidebar"

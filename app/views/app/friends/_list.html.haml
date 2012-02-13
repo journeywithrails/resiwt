@@ -1,0 +1,20 @@
+- if friends.empty?
+  .notices No people found.
+- else
+  %p.grey.small= "Showing #{pluralize(friends.size, "person", "people")}."
+  %table.fancy
+    %tr
+      %th{:width => "60%", :colspan => 2} User
+      %th{:width => "10%"} Influence
+      %th{:width => "10%"} Updates
+      %th{:width => "10%"} Followers
+      %th{:width => "10%"} Friends
+    = render :partial => "app/friends/friend", :collection => friends
+  %p.pagination
+    - if params[:page].to_i - 1 > 0
+      = link_to '&larr; Less', {:page => params[:page].to_i - 1, :type => params[:type], :q => params[:q], :for => params[:for]}, :class => 'newer'
+      = "|"
+    - if params[:page].nil? || params[:page] == 1
+      = link_to 'More &rarr;', {:page => 2, :type => params[:type], :q => params[:q], :for => params[:for]}, :class => 'older'
+    - else
+      = link_to 'More &rarr;', {:page => params[:page].to_i + 1, :type => params[:type], :q => params[:q], :for => params[:for]}, :class => 'older'

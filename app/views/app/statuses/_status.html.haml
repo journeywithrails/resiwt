@@ -1,0 +1,29 @@
+- cache "status#{status.id}" do
+  %li.status{:id => "status_#{status.twitter_id}"}
+    %ul.actions
+      - if status.favourite?
+        %li= link_to content_tag(:span, "unfavourite"), app_user_account_favourite_path(@account, :id => status.twitter_id), :method => :delete, :class => "favourite_selected", :title => "Unfavourite this tweet"
+      - else
+        %li= link_to content_tag(:span, "favourite"), app_user_account_favourites_path(@account, :id => status.twitter_id), :method => :post, :class => "favourite", :title => "Favourite this tweet"
+      - unless @account.is_twitter_user?(status.author)
+        %li= render :partial => "app/retweets/form", :locals => { :status => status }
+        %li= link_to content_tag(:span, "reply"), '#', :class => 'reply', :rel => h("#{status.author.screen_name}:#{h(status.twitter_id)}"), :title => "Reply to #{h status.author.screen_name}"
+      %li= link_to_twitter_status(content_tag(:span, "permalink"), status.twitter_id, status.author.screen_name, :class => "permalink")
+      - if @account.is_twitter_user?(status.author)
+        %li= link_to(content_tag(:span, "remove"), app_user_account_status_path(@account, status.twitter_id), :method => :delete, :confirm => "Are you sure you want to delete this tweet?", :class => "destroy", :title => "Remove this tweet")
+  
+    = render :partial => "app/accounts/profile_card", :locals => { :profile_account => status.author, :account => @account }
+  
+    = link_to "#{h(status.author.screen_name)} (#{format_influence(status.author)})", app_user_account_person_path(@account, status.author.screen_name), :class => "screen_name"
+  
+    %p.text= format_status(status)
+  
+    .meta
+      = "#{link_to_geolocation(status)} -" if status.coordinates
+      = "#{@account.is_being_followed_by?(status.author) ? "Following you" : "Not following you"} - " unless @account.is_twitter_user?(status.author)
+      - if status.reply_to
+        = link_to "In reply to #{h status.reply_to.author.screen_name}", app_user_account_status_path(@account, status.reply_to.twitter_id), :title => "View this tweet on Twitter"
+        \-
+      = link_to("#{time_ago_in_words(status.tweeted_at)} ago", app_user_account_status_path(@account, status.twitter_id))
+      = "(#{status.source})"
+    %br.clear

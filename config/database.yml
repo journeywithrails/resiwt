@@ -1,0 +1,37 @@
+# SQLite version 3.x
+sqlite: &sqlite
+  adapter: sqlite3
+  pool: 10
+  timeout: 5000
+
+# MySQL 5.x
+mysql: &mysql
+  adapter: mysql
+  host: localhost
+  username: twdeploy
+  password: Gazu=wAbect19
+
+development:
+  database: tweasier_development
+  adapter: mysql
+  host: localhost
+  username: root
+  password: password
+
+test: &test
+  database: tweasier_test
+  adapter: mysql
+  host: localhost
+  username: root
+  password: password
+
+staging:
+  database: tweasier_staging
+  <<: *mysql
+
+production:
+  database: tweasier_production
+  <<: *mysql
+
+cucumber:
+  <<: *test

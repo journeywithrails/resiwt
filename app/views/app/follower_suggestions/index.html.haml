@@ -1,0 +1,10 @@
+= object_controls do
+  %li.last= link_to "Back to followers", app_user_account_followers_path(@account)
+
+= content_area do
+  %h3
+    Follower Suggestions for
+    = params[:follower_id]
+    .grey.small= "People who you may be interested following #{params[:follower_id]}."
+  
+  = render_list(:people, @suggestions)

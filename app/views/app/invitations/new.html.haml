@@ -1,0 +1,13 @@
+= content_area do
+  %h3 Send an invitation
+
+  %p Add your friends email address to the box below and click send invitation to invite someone to the exclusive beta preview of Tweasier.
+  
+  - form_for(:invitation, :url => app_invitations_path, :html => {:method => :post, :class => "chunky"}) do |form|
+    = form.error_messages :header_message => "Please check the following:", :message => nil
+    = form.label :recipient_email, "Friends email address"
+    %br
+    = form.text_field :recipient_email
+    %p= form.submit "Send Invite", :class => "awesome blue large", :disable_with => "Sending invite..."
+  
+= render :partial => "app/users/sidebar"

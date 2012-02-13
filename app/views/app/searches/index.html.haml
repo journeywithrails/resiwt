@@ -1,0 +1,8 @@
+= render :partial => "controls_new"
+
+= content_area do
+  %h3
+    Saved searches
+    = help_link "WhatareSearchesandhowdoIusethem9"
+  
+  = render_list(:searches, @searches)

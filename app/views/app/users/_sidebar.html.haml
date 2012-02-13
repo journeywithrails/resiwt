@@ -1,0 +1,6 @@
+- sidebar do
+  %ul#account_options
+    %li= link_to "Edit my Profile", edit_app_user_path
+    %li= link_to "Add a Twitter Account", new_app_user_account_path
+    - if current_user.invitation_limit > 0
+      %li= link_to("Send invitation (#{current_user.invitation_limit} left)", new_app_invitation_path)

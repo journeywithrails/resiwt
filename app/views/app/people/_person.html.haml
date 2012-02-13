@@ -1,0 +1,15 @@
+%tr
+  %td{:width => "10%", :valign => "top"}
+    = render :partial => "app/accounts/profile_card", :locals => { :profile_account => person, :account => @account }
+  %td{:valign => "top", :width => "80%"}
+    = link_to "#{h person.name} (#{h person.screen_name})", app_user_account_person_path(@account.screen_name, person.screen_name)
+    %br
+    - unless current_user.accounts.any? {|a| a.screen_name ==  @account.screen_name }
+      .grey
+        = @account.is_following?(person) ? "Following" : "Not Following"
+        |
+        = @account.is_being_followed_by?(person) ? "Being followed by" : "Not being followed by"
+      %br
+    %br
+    .grey= auto_link(h(person.description))
+  %td.right{:width => "10%"}= format_influence(person)

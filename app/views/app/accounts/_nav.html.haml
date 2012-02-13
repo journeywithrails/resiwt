@@ -1,0 +1,29 @@
+%ul#account_nav
+  %li= link_to "Activity Feed", app_user_account_events_path(account.screen_name), :class => selected_if?(nil, "events")
+  %li
+    = link_to "Twitter", app_user_account_path(account.screen_name), :class => "#{"selected" if (((@controller.controller_name == "accounts" and @controller.action_name == "show") or (@controller.controller_name == "retweets" and @controller.action_name == "index") or (@controller.controller_name == "mentions" and @controller.action_name == "index") or (@controller.controller_name == "direct_messages" and @controller.action_name == "index") or (@controller.controller_name == "favourites" and @controller.action_name == "index") or (@controller.controller_name == "friends" and @controller.action_name == "index") or (@controller.controller_name == "followers" and @controller.action_name == "index")) and !request.request_uri.include?("statistics"))}"
+    %ul
+      %li= link_to "Timeline", app_user_account_path(account.screen_name), :class => "#{"selected" if (@controller.controller_name == "accounts" and @controller.action_name == "show" and !request.request_uri.include?("statistics"))}"
+      %li= link_to "Retweets", app_user_account_retweets_path(account.screen_name), :class => "#{"selected" if (@controller.controller_name == "retweets" and @controller.action_name == "index" and !request.request_uri.include?("statistics"))}"
+      %li= link_to "Mentions", app_user_account_mentions_path(account.screen_name), :class => "#{"selected" if (@controller.controller_name == "mentions" and @controller.action_name == "index" and !request.request_uri.include?("statistics"))}"
+      %li= link_to "Direct Messages", app_user_account_direct_messages_path(account.screen_name), :class => selected_if?(nil, "direct_messages")
+      %li= link_to "Favourites", app_user_account_favourites_path(account.screen_name), :class => selected_if?(nil, "favourites")
+      %li= link_to "Friends", app_user_account_friends_path(account.screen_name), :class => "#{"selected" if (@controller.controller_name == "friends" and @controller.action_name == "index" and !request.request_uri.include?("statistics"))}"
+      %li= link_to "Followers", app_user_account_followers_path(account.screen_name), :class => selected_if?(nil, "followers")
+  %li= link_to "Scheduled Statuses", app_user_account_scheduled_statuses_path(account.screen_name)
+  %li= link_to "Conversations", app_user_account_conversations_path(account.screen_name)
+  %li= link_to "Searches", app_user_account_searches_path(account.screen_name), :class => "#{"selected" if (@controller.controller_name == "searches" and !request.request_uri.include?("statistics"))}"
+  %li
+    = link_to "Statistics", app_user_account_statistics_overview_path(account.screen_name), :class => "#{"selected" if request.request_uri.include?("statistics")}"
+    %ul
+      %li= link_to "Overview", app_user_account_statistics_overview_path(@account.screen_name)
+      %li= link_to "Network &larr;", app_user_account_statistics_network_path(@account.screen_name)
+      %li= link_to "Usage &larr;", usage_app_user_account_statistics_network_path(@account.screen_name)
+      %li= link_to "Timeline &larr;", timeline_app_user_account_statistics_overview_path(@account.screen_name)
+      %li= link_to "Mentions &larr;", mentions_app_user_account_statistics_overview_path(@account.screen_name)
+      %li= link_to "Retweets &larr;", retweets_app_user_account_statistics_network_path(@account.screen_name)
+      %li= link_to "Friends &larr;", friends_app_user_account_statistics_network_path(@account.screen_name)
+      %li= link_to "Followers &larr;", followers_app_user_account_statistics_network_path(@account.screen_name)
+      %li= link_to "Links &larr;", app_user_account_statistics_links_path(@account.screen_name)
+      %li= link_to "Searches &larr;", searches_app_user_account_statistics_content_path(@account.screen_name) if @account.searches.present?
+      %li= link_to "Miscellaneous &larr;", app_user_account_statistics_content_path(@account.screen_name)

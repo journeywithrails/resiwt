@@ -1,0 +1,41 @@
+!!! Strict
+!!! XML
+%html{ :'xml:lang' => "en", :lang => "en" }
+  %head
+    %title Tweasier - The Twitter application that makes life easier
+    %meta{:name => "description", :content => "Tweasier the Twitter application that makes life easier"}
+    %meta{:name => "keywords", :content => "Twitter application, Twitter tool, Twitter statistics, Twitter management application, Twitter follower, twitter clients, Social media tool, Twitter search, twitter business, twitter plans, Twitter questions, Twitter users, Twitter friends"}
+    = yield_javascript_vars
+    = shared "meta"
+    = yield :head
+  %body
+    - if should_be_ssl?
+      .ssl_notice should be ssl
+    #loader
+      %h4 Talking to Twitter...
+    
+    = shared "maintenance", :namespace => "app"
+    = shared "header"
+    = shared "spotlight" if controller_is?(:home)
+    
+    #content
+      = shared "flash", :flash => flash
+      - if within_application?
+        .inner.application
+          #wrapper
+            - if @account
+              = render :partial => "app/statuses/form"
+              = render :partial => "app/accounts/rate_limit_notice" if @account.rate_limit_hit?
+            = yield :layout
+            %br.clear
+          = shared "sidebar", :namespace => :app if signed_in?
+          %br.clear
+          %br.clear
+      - else
+        .inner
+          %br.clear
+          = yield :layout
+          %br.clear
+          %br.clear
+    = shared "footer"
+    = shared "analytics"

@@ -1,0 +1,10 @@
+= render :partial => "controls_new"
+
+= content_area do
+  %h3 Conversations
+  %p
+    Tweasier allows you to watch conversations between two users on Twitter. Simply provide the names of the people you wish to see a conversation between (without the @ symbol) and we'll do the rest. Please note that for now conversations between people are limited to
+    = Configuration.twitter.search_content_lifespan
+    days.
+  
+  =render_list(:conversations, @conversations)
